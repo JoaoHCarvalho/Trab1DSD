@@ -78,61 +78,64 @@ public class Servidor {
     }
 
     private static void updateHotel(BufferedReader in, PrintWriter out) throws IOException {
-        int temp = Integer.parseInt(in.readLine());
-        if(!hoteis.isEmpty())
+        int temp = Integer.parseInt(in.readLine())-1;
+        if(hoteis.isEmpty())
         {
-            if (temp < 1 || temp > hoteis.size())
-                out.println("Hotel não encontrado");
-            else
-            {
-                Hotel hotel= hoteis.get(temp-1);
-                String nome = in.readLine();
-                String endereco = in.readLine();
-                int quartos = Integer.parseInt(in.readLine());
-                int vagas = Integer.parseInt(in.readLine());
-                double classificacao = Double.parseDouble(in.readLine());
-                hotel.setNome(nome);
-                hotel.setEndereco(endereco);
-                hotel.setQuartos(quartos);
-                hotel.setVagas(vagas);
-                hotel.setClassificacao(classificacao);
-                out.println("Hotel atualizado com sucesso");
-            }
-        } else
-            out.println("Hotel não encontrado");
+            out.println(0);
+            return;
+        }
+        if (temp < 0 || temp >= hoteis.size())
+        {
+            out.println(1);
+            return;
+        }
+        out.println(-1);
+        Hotel hotel= hoteis.get(temp);
+        String nome = in.readLine();
+        String endereco = in.readLine();
+        int quartos = Integer.parseInt(in.readLine());
+        int vagas = Integer.parseInt(in.readLine());
+        double classificacao = Double.parseDouble(in.readLine());
+        hotel.setNome(nome);
+        hotel.setEndereco(endereco);
+        hotel.setQuartos(quartos);
+        hotel.setVagas(vagas);
+        hotel.setClassificacao(classificacao);
+        out.println("Hotel atualizado com sucesso");
     }
 
     private static void getHotel(BufferedReader in, PrintWriter out) throws IOException {
-        int temp = Integer.parseInt(in.readLine());
-        if(!hoteis.isEmpty())
+        int temp = Integer.parseInt(in.readLine())-1;
+        if(hoteis.isEmpty())
         {
-            if (temp < 1 || temp > hoteis.size())
-                out.println("Hotel não encontrado");
-            else
-            {
-                Hotel hotel= hoteis.get(temp-1);
-                out.println(hotel.toString());
-            }
-        } else
-            out.println("Sem hotéis cadastrados");
+            out.println(0);
+            return;
+        }
+        if (temp < 0 || temp >= hoteis.size())
+        {
+            out.println(1);
+            return;
+        }
+        out.println(-1);
+        Hotel hotel= hoteis.get(temp);
+        out.println(hotel.toString());
     }
 
     private static void deleteHotel(BufferedReader in, PrintWriter out) throws IOException {
-        int temp = Integer.parseInt(in.readLine());
-        if(!hoteis.isEmpty())
+        int temp = Integer.parseInt(in.readLine())-1;
+        if(hoteis.isEmpty())
         {
-            if (temp < 1 || temp > hoteis.size())
-                out.println("Hotel não encontrado");
-            else
-            {
-                hoteis.remove(temp - 1);
-                out.println("Hotel removido com sucesso");
-            }
-        } else
-        {
-            out.println("Sem hotéis cadastrados");
+            out.println(0);
+            return;
         }
-
+        if (temp < 0 || temp >= hoteis.size())
+        {
+            out.println(1);
+            return;
+        }
+        out.println(-1);
+        hoteis.remove(temp);
+        out.println("Hotel removido com sucesso");
     }
 
     private static void listHotel(BufferedReader in, PrintWriter out) {

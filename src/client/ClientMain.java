@@ -91,29 +91,40 @@ public class ClientMain {
         System.out.println("Atualizar Hotel:");
         System.out.print("NUM. HOTEL: ");
         out.println(scanner.nextLine());
-        System.out.print("Nome: ");
-        out.println(scanner.nextLine());
-        System.out.print("Endereco: ");
-        out.println(scanner.nextLine());
-        System.out.print("Quartos: ");
-        out.println(scanner.nextLine());
-        System.out.print("Vagas: ");
-        out.println(scanner.nextLine());
-        System.out.print("Classificação: ");
-        out.println(scanner.nextLine());
-        System.out.println(server.readLine());
+        String str = server.readLine();
+        if(checkHotel(str))
+        {
+            System.out.print("Nome: ");
+            out.println(scanner.nextLine());
+            System.out.print("Endereco: ");
+            out.println(scanner.nextLine());
+            System.out.print("Quartos: ");
+            out.println(scanner.nextLine());
+            System.out.print("Vagas: ");
+            out.println(scanner.nextLine());
+            System.out.print("Classificação: ");
+            out.println(scanner.nextLine());
+            System.out.println(server.readLine());
+        }
+
     }
     public static  void getHotel(BufferedReader server, PrintWriter out, Scanner scanner) throws IOException {
         out.println("GET_HOTEL");
-        System.out.print("NUM. HOTEL: ");
+        System.out.println("Obter Hotel: ");
+        System.out.println("NUM. HOTEL: ");
         out.println(scanner.nextLine());
-        System.out.println(server.readLine());
+        String str = server.readLine();
+        if(checkHotel(str))
+            System.out.println(server.readLine());
     }
     public static void deleteHotel(BufferedReader server, PrintWriter out, Scanner scanner) throws IOException {
         out.println("DELETE_HOTEL");
-        System.out.print("NUM. HOTEL: ");
+        System.out.println("Remover Hotel:");
+        System.out.println("NUM. HOTEL: ");
         out.println(scanner.nextLine());
-        System.out.println(server.readLine());
+        String str = server.readLine();
+        if(checkHotel(str))
+            System.out.println(server.readLine());
     }
     private static void listHotel(BufferedReader server, PrintWriter out, Scanner scanner) throws IOException {
         out.println("LIST_HOTEL");
